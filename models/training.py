@@ -40,8 +40,3 @@ def has_same_letter_more_than_3_times_number(message):
     else:
         return 0
             
-def has_spam_keyword(message):
-    if message.__contains__('spam'):
-        return 1
-    else:
-        return 0
