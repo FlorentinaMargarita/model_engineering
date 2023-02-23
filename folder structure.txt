@@ -1,17 +1,4 @@
 project_name/
-├── data/
-│   ├── raw/
-│   │   ├── data_file_1.csv
-│   │   ├── data_file_2.csv
-│   │   └── ...
-│   ├── processed/
-│   │   ├── data_file_1_processed.csv
-│   │   ├── data_file_2_processed.csv
-│   │   └── ...
-│   └── interim/
-│       ├── data_file_1_interim.csv
-│       ├── data_file_2_interim.csv
-│       └── ...
 ├── models/
 │   ├── model_1/
 │   │   ├── model.pkl
