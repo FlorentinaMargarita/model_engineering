@@ -60,11 +60,18 @@ special_signs_spam_messages_count = len(special_signs_spam_messages)
 phone_number_spam_messages_count = len(phone_number_spam_messages)
 single_letter_word_messages_count = len(single_letter_word_messages)
 
-print(all_messages__count, 'all_messages__count')
-print(all_caps_spam_messages_count, 'all_caps_spam_messages_count')
-print(special_signs_spam_messages_count, 'special_signs_spam_messages_count')
-print(phone_number_spam_messages_count, 'phone_number_spam_messages_count')
-print(single_letter_word_messages_count, 'single_letter_word_messages_count')
+duplicates = []
+for message in all_messages:
+    if all_messages.count(message) > 1 and message not in duplicates:
+        duplicates.append(message)
+
+# Print the duplicates
+if duplicates:
+    print("Duplicates found: ", duplicates)
+else:
+    print("No duplicates found.")
+
+print(len(duplicates), "length duplicate")
 
 
 showers = {'labels': ['other patterns', "Same Letter words", 'All caps', 
@@ -95,31 +102,31 @@ labels =  ['not spam', 'spam']
 colors = {'not spam': 'blue', 'spam': 'red'}
 data = {'labels': labels, 'counts': counts}
 sns.set_style('whitegrid')
-# sns.color_palette('pastel')
-# sns.set_palette(sns.color_palette(colors.values()))
-# ham_spam_data = pd.DataFrame(data)
-# from matplotlib.patches import Patch
-# legend_elements = [Patch(facecolor=color, label=label) for label, color in colors.items()]
-# plt.legend(handles=legend_elements)
+sns.color_palette('pastel')
+sns.set_palette(sns.color_palette(colors.values()))
+ham_spam_data = pd.DataFrame(data)
+from matplotlib.patches import Patch
+legend_elements = [Patch(facecolor=color, label=label) for label, color in colors.items()]
+plt.legend(handles=legend_elements)
 
-# df = pd.DataFrame(ham_spam_data)
+df = pd.DataFrame(ham_spam_data)
 
-# sns.set_style('darkgrid')
-# plt.title('Spam vs Non-spam messages')
-# print(df, 'df do')
-# print(ham_spam_data['counts'], 'ham_spam_data[counts]', ham_spam_data['labels'])
+sns.set_style('darkgrid')
+plt.title('Spam vs Non-spam messages')
+print(df, 'df do')
+print(ham_spam_data['counts'], 'ham_spam_data[counts]', ham_spam_data['labels'])
 
-# plt.pie(ham_spam_data['counts'], labels=ham_spam_data['labels'], autopct='%1.1f%%')
+plt.pie(ham_spam_data['counts'], labels=ham_spam_data['labels'], autopct='%1.1f%%')
 
 
 
-# plt.show()
+plt.show()
 
 # create a pie chart using seaborn
-colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple']
+# colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple']
 
-plt.title('Spam messages', fontweight='bold', bbox=dict(facecolor='red', edgecolor='black', boxstyle='round,pad=1'))
-plt.pie(showers['values'],  labels=showers['labels'], autopct='%1.1f%%', startangle=90, shadow=True,  textprops={'fontsize': 10})
+# plt.title('Spam messages', fontweight='bold', bbox=dict(facecolor='red', edgecolor='black', boxstyle='round,pad=1'))
+# plt.pie(showers['values'],  labels=showers['labels'], autopct='%1.1f%%', startangle=90, shadow=True,  textprops={'fontsize': 10})
 
 
 plt.show()
