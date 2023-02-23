@@ -28,7 +28,6 @@ project_name/
 │   ├── business_understanding_report.pdf
 │   ├── data_preparation_report.pdf
 │   ├── model_evaluation_report.pdf
-│   ├── deployment_report.pdf
 │   
 ├── scripts/
 │   ├── data_preparation.py
