@@ -1,6 +1,4 @@
 project_name/
-├── data/
-│   ├── SMSSpamCollection.csv 
 ├── models/
 │   ├── feature_engineering /
 │   │   ├── patterns.py
