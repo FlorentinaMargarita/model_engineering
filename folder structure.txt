@@ -1,24 +1,22 @@
 project_name/
+├── data/
+│   ├── SMSSpamCollection.csv 
 ├── models/
-│   ├── model_1/
-│   │   ├── model.pkl
-│   │   ├── model_summary.txt
-│   │   ├── training_data.csv
+│   ├── feature_engineering /
+│   │   ├── patterns.py
+│   │   ├── word_bagging.py
+|
+│   ├── model_logistic_regression /
+│   │   ├── training.py
+│   │  
 │   │   
 │   ├── model_2/
-│   │   ├── model.pkl
-│   │   ├── model_summary.txt
-│   │   ├── training_data.csv
+│   │   ├── model.py
+│   │  
 │   │   
 │   └── ...
-├── reports/
-│   ├── business_understanding_report.pdf
-│   ├── data_preparation_report.pdf
-│   ├── model_evaluation_report.pdf
-│   
-├── scripts/
-│   ├── data_preparation.py
-│   ├── feature_engineering.py
-│   ├── model_training.py
-│   
+|
+|
+├── gitignore   
+├── read_data.py
 └── README.md
