@@ -2,8 +2,8 @@ from sklearn.feature_extraction.text import CountVectorizer
 import csv
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
-import re
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, mean_squared_error, mean_squared_error, r2_score
+import math
 
 
     
@@ -20,24 +20,57 @@ with open('./../../data/SMSSpamCollection.csv', 'r') as f:
          y.append(append_y)
 
 vectorizer = CountVectorizer()
-print(type(all_messages), 'ALL MESSAGE TYPE')
 
 X  = vectorizer.fit_transform(all_messages)
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-# print(type(X_test), 'typerdo')
-print(X_test, 'xtest')
 
-# print(X_test.toarray().flatten(), 'erm?')
 
 model = LogisticRegression()
 model.fit(X_train, y_train)
-# print(X_test, 'xtest')
 
-# X_tester = vectorizer.transform( X_test.toarray().flatten())
 predictions = model.predict(X_test)
 
 print(predictions, 'predictions')
 accuracy = accuracy_score(y_test, predictions)
 
-print(f"Accuracy: {accuracy}")
+print("Accuracy",accuracy)
+
+mse = mean_squared_error(y_test, predictions)
+
+print("MSE", mse)
+
+mse = mean_squared_error(y_test, predictions)
+rmse = math.sqrt(mse)
+
+print("RMSE:", rmse)
+
+r2 = r2_score(y_test, predictions)
+
+print("R-squared:", r2)
+
+
+
+def cross_validation(X, y): 
+
+    vectorizer_for_cross_validation = CountVectorizer()
+    X  = vectorizer_for_cross_validation.fit_transform(all_messages)
+
+    model_for_cross_validation = LogisticRegression()
+
+    folds = 5
+
+    for index in range(folds):
+
+        X_train_fold, X_val_fold, y_train_fold, y_val_fold = train_test_split(X, y, test_size=0.2, random_state=index)
+
+        model_for_cross_validation.fit(X_train_fold, y_train_fold)
+
+        y_prediction = model_for_cross_validation.predict(X_val_fold)
+        accuracy_for_this_split = accuracy_score(y_val_fold, y_prediction)
+        
+        print("Fold", index, "accuracy score:", round(accuracy_for_this_split, 4))
+
+
+
+cross_validation(all_messages, y)
