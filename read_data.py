@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt
 import re
 from models.feature_engineering import patterns
 import csv
-from models.feature_engineering.word_bagging import bag_of_words_func
 import seaborn as sns
 
 
@@ -25,7 +24,6 @@ all_caps_spam_messages = []
 single_letter_word_messages = []
 same_letter_more_than_3x = []
 
-bag_of_words = bag_of_words_func(all_messages)
 
 duplicates = []
 for message in all_messages:
@@ -68,18 +66,12 @@ special_signs_spam_messages_count = len(special_signs_spam_messages)
 phone_number_spam_messages_count = len(phone_number_spam_messages)
 single_letter_word_messages_count = len(single_letter_word_messages)
 
-# duplicates = []
-# for message in all_messages:
-#     if all_messages.count(message) > 1 and message not in duplicates:
-#         duplicates.append(message)
+duplicates = []
+for message in all_messages:
+    if all_messages.count(message) > 1 and message not in duplicates:
+        duplicates.append(message)
 
-# # Print the duplicates
-# if duplicates:
-#     print("Duplicates found: ", duplicates)
-# else:
-#     print("No duplicates found.")
-
-# print(len(duplicates), "length duplicate")
+print(len(duplicates), "length duplicate")
 
 
 showers = {'labels': ['other patterns', "Same Letter words", 'All caps', 
