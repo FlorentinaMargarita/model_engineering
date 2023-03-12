@@ -5,9 +5,8 @@ import re
 import patterns
 import csv
 import seaborn as sns
-import tkinter
+import numpy as np
 
-# mt.use('TkAgg')
 
 
 all_labels = []
@@ -76,6 +75,33 @@ for message in all_messages:
 
 print(len(duplicates), "length duplicate")
 
+# identifying oultiers via the length
+length_of_all_messages = [len(x) for x in all_messages]
+# print(length_of_all_messages, 'length_of_all_messages')
+
+def detect_outliers_zscore(data, threshold=3):
+    mean = np.mean(data)
+    print(mean, 'mean')
+    std = np.std(data)
+    z_scores = np.abs((data - mean) / std)
+    return z_scores > threshold
+
+
+outliers = detect_outliers_zscore(length_of_all_messages)
+# turn tuple into list to then display it, then flatten it to make it one-dimenstionalarray
+index_of_outliers = np.array(np.where(outliers)).flatten()
+print(len(index_of_outliers), 'how many outliers are there?')
+
+
+
+outlier_content = []
+for x in index_of_outliers:
+    outlier_content.append(length_of_all_messages[x])
+
+print('smallest outlier', sorted(outlier_content)[0], 'largest outlier', sorted(outlier_content)[-1])
+
+# print(length_of_all_messages[o])
+# print(and_the_outliers_are, 'and_the_outliers_are')
 
 showers = {'labels': ['other patterns', "Same Letter words", 'All caps', 
          "phone #", "single letter word"],
