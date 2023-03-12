@@ -2,25 +2,22 @@ import pandas as pd
 import matplotlib as mt
 import matplotlib.pyplot as plt
 import re
-from feature_engineering import patterns
+from models.feature_engineering import patterns
 import csv
-from feature_engineering.word_bagging import bag_of_words_func
+from models.feature_engineering.word_bagging import bag_of_words_func
 import seaborn as sns
 
 
-mt.use('TkAgg')
-
-
+all_labels = []
 all_messages  = []
 
 with open('./data/SMSSpamCollection.csv', 'r') as f:
     reader = csv.reader(f)
     
     for row in reader:
-        if all_messages.count(row[0]) > 1:
-            pass
-        else:
-         all_messages.append(row[0])
+         all_messages.append(row[0][4:])
+         all_labels.append(row[0][0:4])
+
         
 phone_number_spam_messages = []
 special_signs_spam_messages = []
@@ -29,16 +26,13 @@ single_letter_word_messages = []
 same_letter_more_than_3x = []
 
 bag_of_words = bag_of_words_func(all_messages)
-print(bag_of_words, 'bag_of_words')
 
 duplicates = []
 for message in all_messages:
     if all_messages.count(message) > 1 and message not in duplicates:
         duplicates.append(message)
 
-print(len(duplicates), "length duplicate")
 
-print(len(all_messages), 'trydata length')
 for message in all_messages: 
     phone_number = re.search(patterns.phone_number_pattern, message)
     
@@ -143,4 +137,4 @@ plt.show()
 # plt.pie(showers['values'],  labels=showers['labels'], autopct='%1.1f%%', startangle=90, shadow=True,  textprops={'fontsize': 10})
 
 
-plt.show()
+# plt.show()
