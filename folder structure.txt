@@ -1,20 +1,18 @@
-project_name/
-├── models/
-│   ├── feature_engineering /
+spam_detector/
+│
+│   ├── visualization /
 │   │   ├── patterns.py
-│   │   ├── word_bagging.py
-|
+│   │   ├── percentages.py
+│   │   ├── read_data.py
+│
+├── models/
 │   ├── model_logistic_regression /
-│   │   ├── training.py
+│   │   ├── word_bagging.py
 │   │  
 │   │   
 │   ├── model_2/
 │   │   ├── model.py
-│   │  
-│   │   
-│   └── ...
 |
 |
 ├── gitignore   
-├── read_data.py
 └── README.md

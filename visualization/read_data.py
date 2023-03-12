@@ -2,15 +2,18 @@ import pandas as pd
 import matplotlib as mt
 import matplotlib.pyplot as plt
 import re
-from models.feature_engineering import patterns
+import patterns
 import csv
 import seaborn as sns
+import tkinter
+
+# mt.use('TkAgg')
 
 
 all_labels = []
 all_messages  = []
 
-with open('./data/SMSSpamCollection.csv', 'r') as f:
+with open('./../data/SMSSpamCollection.csv', 'r') as f:
     reader = csv.reader(f)
     
     for row in reader:
@@ -116,17 +119,17 @@ plt.title('Spam vs Non-spam messages')
 print(df, 'df do')
 print(ham_spam_data['counts'], 'ham_spam_data[counts]', ham_spam_data['labels'])
 
-plt.pie(ham_spam_data['counts'], labels=ham_spam_data['labels'], autopct='%1.1f%%')
 
-
-
-plt.show()
-
-# create a pie chart using seaborn
-# colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple']
-
-# plt.title('Spam messages', fontweight='bold', bbox=dict(facecolor='red', edgecolor='black', boxstyle='round,pad=1'))
-# plt.pie(showers['values'],  labels=showers['labels'], autopct='%1.1f%%', startangle=90, shadow=True,  textprops={'fontsize': 10})
 
 
 # plt.show()
+# plt.savefig("mygraph.png")
+
+colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple']
+
+plt.title('Spam messages', fontweight='bold', bbox=dict(facecolor='red', edgecolor='black', boxstyle='round,pad=1'))
+plt.pie(showers['values'],  labels=showers['labels'], autopct='%1.1f%%', startangle=90, shadow=True,  textprops={'fontsize': 10})
+
+# plt.savefig("mygraph.png")
+# 
+plt.show()
